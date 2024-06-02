@@ -15,7 +15,7 @@ cache: true
 ::: callout-important
 ## Disclaimer
 
-This document is a product of the final project for the STAT 564  lecture, focusing on statistical data analysis and machine learning  models. It is essential to acknowledge that minor errors may be  present, and the methods employed may not necessarily reflect the  optimal approach related to the data set.
+This document is a product of the final project for the STAT 564 lecture, focusing on statistical data analysis and machine learning models. It is essential to acknowledge that minor errors may be present, and the methods employed may not necessarily reflect the optimal approach related to the data set.
 :::
 
 ```{r library,include=FALSE}
@@ -87,7 +87,7 @@ GrandSlam <- rbind(list_df[[1]],list_df[[2]],list_df[[3]],list_df[[4]],list_df[[
 Source of the data is [UC Irvine Machine Learning Repository](https://archive.ics.uci.edu/dataset/300/tennis+major+tournament+match+statistics). In the source of the data, there is 8 different csv file. Each one represent different tournament from 2013 (Aus Open-Men,AusOpen-Women, USOpen-men,...). Data has 4 different tournament group by gender, so we have 8 different csv file data. All of the 8 csv data has same 42 variables, so all of them are combined to 1 csv file and 2 variable added as tournament and gender. At the end, data has 44 variable. Dependent variable is 'Result'. Our data have `r dim(GrandSlam)[1]` match observations.
 
 | Name of Variable | Definition of Variable                                                                             |
-|--------------------------|----------------------------------------------|
+|------------------|----------------------------------------------------------------------------------------------------|
 | Player 1         | Name of Player 1 (Nominal)                                                                         |
 | Player 2         | Name of Player 2 (Nominal)                                                                         |
 | Round            | Round of the tourneament (Nominal Ordinal) (1: 1st elimination round, 7: Final of the tournament ) |
@@ -315,8 +315,7 @@ head(GrandSlam[cond,c("NPA.1","NPW.1","NPA.2","NPW.2")])
 
 ### Summary Statistics
 
-Below there are frequency tables for tournament, round, result and gender. Aus open and French open tournaments have most number of match. Also, as expected most matches played at round 1. Number of male matches are greater than female matches. Moreover, Most round 1 matches played at US open, but at the remaining round US Open matches are not much when considering other tournaments. There may be incomplete data for US Open.
-Number of result 1 and 2 are very close to each other. So, data is balanced.
+Below there are frequency tables for tournament, round, result and gender. Aus open and French open tournaments have most number of match. Also, as expected most matches played at round 1. Number of male matches are greater than female matches. Moreover, Most round 1 matches played at US open, but at the remaining round US Open matches are not much when considering other tournaments. There may be incomplete data for US Open. Number of result 1 and 2 are very close to each other. So, data is balanced.
 
 ```{r freq_table}
 ## Frequency table for categorical
@@ -476,6 +475,7 @@ GrandSlam <- GrandSlam %>%
 ## to check variances after cleaning, before data saved to another name.
 GrandSlam_before <- GrandSlam
 ```
+
 Firstly, we should find NA values. As we look at the number of NA observations of variables that include NA (below), we can see there are `r sum(is.na(GrandSlam))` NA values
 
 ```{r NA_1, warning=FALSE}
@@ -586,7 +586,6 @@ GrandSlam <- GrandSlam %>%
   select(-c(TPW.1,TPW.2,FNL.1,FNL.2))
 ```
 
-
 After TPW remove from data set, number of NA values are like below.
 
 ```{r NA_11, warning=FALSE}
@@ -627,7 +626,6 @@ After missing data cleaning and imputation, we have `r dim(GrandSlam)[1]` observ
 ```{r NA_14, warning=FALSE}
 summary(GrandSlam)
 ```
-
 
 After, manipulating and imputating data set, variances of variables are not change much as you see in the bar graph. (Y scale is log.)
 
@@ -970,7 +968,7 @@ Learning rate tuned as `r best_lr` by 10 k fold cross validation. With this lear
 plot(nn_model,main="Cross-validation of Neural Network by learning rate", xlab="Learning Rate")
 ```
 
-Last model looks like below. 
+Last model looks like below.
 
 ```{r nn_tuned}
 nn_tuned <- neuralnet(RESULT~.,data=GrandSlam_trn_std_nn,linear.output = FALSE,act.fct = "logistic",hidden = 1,learningrate = best_lr)
@@ -1014,8 +1012,7 @@ kable(performance_table_nn,  caption = "Test data Performance of Neural Network"
 
 Accuracy of test data is `r conf_matrix$overall['Accuracy']`.
 
-As seen on the schema, output weights and biases are very close to each other. Therefore, variable weights can be related to importance of variable.
-Weight table shows that FSW, BPC and SSW are the most effective variables to predict result.
+As seen on the schema, output weights and biases are very close to each other. Therefore, variable weights can be related to importance of variable. Weight table shows that FSW, BPC and SSW are the most effective variables to predict result.
 
 ```{r NeuralNet}
 weight_nn <- nn_tuned$weights[[1]][[1]]
@@ -1027,8 +1024,7 @@ kable(feature_importance[order(abs(feature_importance$Weights),decreasing = TRUE
 
 ### Model Comparison Table
 
-Model comparison table show that Random Forest model has the best accuracy. Also when we consider importance of variable, all of the model indicate that FSW, BPC, SSW are the most effective statistics that effect the result. 
-Therefore, players should practice serving better and returning serves from opponent in order to win the match.
+Model comparison table show that Random Forest model has the best accuracy. Also when we consider importance of variable, all of the model indicate that FSW, BPC, SSW are the most effective statistics that effect the result. Therefore, players should practice serving better and returning serves from opponent in order to win the match.
 
 ```{r model_comp}
 comp_df <- data.frame("Metric"= performance_table_log$Metric,
@@ -1242,6 +1238,4 @@ kable(perf_lm_lasso_ridge,col.names = c("Metric", "Linear Model","LASSO","RIDGE"
 
 ## Conclusion
 
-As a conclusion, Grand slams 2013 data set analyzed by considering Result and total points win. For predicting result, classification modeling applied as logistic regression, svm, random forest and ANN. Random forest show the best performance for predicting match result. Also, according to all classification model FSW and BPC are the most effective variables.
-Moreover, TPW regression made by classical linear model, lasso and ridge. All of the regression model show that again FSW and BPC are most important variables for TPW.
-Therefore, players should focus on serving and returning oppenent services to win the match and win more points.
+As a conclusion, Grand slams 2013 data set analyzed by considering Result and total points win. For predicting result, classification modeling applied as logistic regression, svm, random forest and ANN. Random forest show the best performance for predicting match result. Also, according to all classification model FSW and BPC are the most effective variables. Moreover, TPW regression made by classical linear model, lasso and ridge. All of the regression model show that again FSW and BPC are most important variables for TPW. Therefore, players should focus on serving and returning oppenent services to win the match and win more points.
