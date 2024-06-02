@@ -96,7 +96,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#support-vector-machine-modeling" id="toc-support-vector-machine-modeling" class="nav-link" data-scroll-target="#support-vector-machine-modeling">Support Vector Machine Modeling</a></li>
   <li><a href="#random-forest-model" id="toc-random-forest-model" class="nav-link" data-scroll-target="#random-forest-model">Random Forest Model</a></li>
   <li><a href="#artificial-neural-network-model" id="toc-artificial-neural-network-model" class="nav-link" data-scroll-target="#artificial-neural-network-model">Artificial Neural Network Model</a></li>
-  <li><a href="#model-comparison-table" id="toc-model-comparison-table" class="nav-link" data-scroll-target="#model-comparison-table">Model Comparison Table</a></li>
+  <li><a href="#model-comparison" id="toc-model-comparison" class="nav-link" data-scroll-target="#model-comparison">Model Comparison</a></li>
   </ul></li>
   <li><a href="#regression-modelling-for-tpw" id="toc-regression-modelling-for-tpw" class="nav-link" data-scroll-target="#regression-modelling-for-tpw">7. Regression Modelling for TPW</a>
   <ul class="collapse">
@@ -3411,7 +3411,7 @@ ST5.2
 <span id="cb74-23"><a href="#cb74-23" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb74-24"><a href="#cb74-24" aria-hidden="true" tabindex="-1"></a>var_comp <span class="ot">&lt;-</span> <span class="fu">rbind</span>(variances_first,variances_last)</span>
 <span id="cb74-25"><a href="#cb74-25" aria-hidden="true" tabindex="-1"></a>var_names <span class="ot">&lt;-</span> <span class="fu">colnames</span>(var_comp)</span>
-<span id="cb74-26"><a href="#cb74-26" aria-hidden="true" tabindex="-1"></a>var_comp<span class="sc">$</span>group <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"First"</span>, <span class="st">"Last"</span>)</span>
+<span id="cb74-26"><a href="#cb74-26" aria-hidden="true" tabindex="-1"></a>var_comp<span class="sc">$</span>group <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Before Imputation"</span>, <span class="st">"After Imputation"</span>)</span>
 <span id="cb74-27"><a href="#cb74-27" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb74-28"><a href="#cb74-28" aria-hidden="true" tabindex="-1"></a>df_long <span class="ot">&lt;-</span> var_comp <span class="sc">%&gt;%</span></span>
 <span id="cb74-29"><a href="#cb74-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span>var_names , <span class="at">names_to =</span> <span class="st">"variable"</span>, <span class="at">values_to =</span> <span class="st">"value"</span>)</span>
@@ -3420,7 +3420,7 @@ ST5.2
 <span id="cb74-32"><a href="#cb74-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">stat =</span> <span class="st">"identity"</span>, <span class="at">position =</span> <span class="fu">position_dodge</span>(<span class="at">width =</span> <span class="dv">1</span>)) <span class="sc">+</span></span>
 <span id="cb74-33"><a href="#cb74-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Comparison of Variables Across Multiple Variables"</span>,</span>
 <span id="cb74-34"><a href="#cb74-34" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Variable"</span>,</span>
-<span id="cb74-35"><a href="#cb74-35" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Value"</span>,</span>
+<span id="cb74-35"><a href="#cb74-35" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Variance"</span>,</span>
 <span id="cb74-36"><a href="#cb74-36" aria-hidden="true" tabindex="-1"></a>       <span class="at">fill =</span> <span class="st">"Group"</span>) <span class="sc">+</span></span>
 <span id="cb74-37"><a href="#cb74-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_log10</span>()<span class="sc">+</span></span>
 <span id="cb74-38"><a href="#cb74-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()<span class="sc">+</span></span>
@@ -4491,8 +4491,8 @@ Number of Fisher Scoring iterations: 8</code></pre>
 </div>
 </div>
 </section>
-<section id="model-comparison-table" class="level3">
-<h3 class="anchored" data-anchor-id="model-comparison-table">Model Comparison Table</h3>
+<section id="model-comparison" class="level3">
+<h3 class="anchored" data-anchor-id="model-comparison">Model Comparison</h3>
 <p>Model comparison table show that Random Forest model has the best accuracy. Also when we consider importance of variable, all of the model indicate that FSW, BPC, SSW are the most effective statistics that effect the result. Therefore, players should practice serving better and returning serves from opponent in order to win the match.</p>
 <div class="cell">
 <details class="code-fold">
@@ -4502,11 +4502,11 @@ Number of Fisher Scoring iterations: 8</code></pre>
 <span id="cb103-3"><a href="#cb103-3" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"SVM"</span><span class="ot">=</span>performance_table_svm<span class="sc">$</span>Value,</span>
 <span id="cb103-4"><a href="#cb103-4" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"Random Forest"</span><span class="ot">=</span>performance_table_rf<span class="sc">$</span>Value,</span>
 <span id="cb103-5"><a href="#cb103-5" aria-hidden="true" tabindex="-1"></a>                      <span class="st">"ANN"</span> <span class="ot">=</span> performance_table_nn<span class="sc">$</span>Value) </span>
-<span id="cb103-6"><a href="#cb103-6" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(comp_df, <span class="at">caption =</span> <span class="st">"Performance Comporison"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb103-6"><a href="#cb103-6" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(comp_df, <span class="at">caption =</span> <span class="st">"Performance Comparison"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <table class="table table-sm table-striped small">
-<caption>Performance Comporison</caption>
+<caption>Performance Comparison</caption>
 <thead>
 <tr class="header">
 <th style="text-align: left;">Metric</th>
@@ -4885,32 +4885,43 @@ W = 0.98635, p-value = 4.395e-08</code></pre>
 </div>
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb114"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb114-1"><a href="#cb114-1" aria-hidden="true" tabindex="-1"></a><span class="co">#creating test training data by considcering distribution of Result</span></span>
-<span id="cb114-2"><a href="#cb114-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">25</span>)</span>
-<span id="cb114-3"><a href="#cb114-3" aria-hidden="true" tabindex="-1"></a>GrandSlam_idx <span class="ot">=</span> <span class="fu">createDataPartition</span>(GrandSlam_Reg_final<span class="sc">$</span>TPW, <span class="at">p =</span> <span class="fl">0.8</span>, <span class="at">list =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb114-4"><a href="#cb114-4" aria-hidden="true" tabindex="-1"></a>GrandSlam_train <span class="ot">=</span> GrandSlam_Reg_final[GrandSlam_idx, ]</span>
-<span id="cb114-5"><a href="#cb114-5" aria-hidden="true" tabindex="-1"></a>GrandSlam_test <span class="ot">=</span> GrandSlam_Reg_final[<span class="sc">-</span>GrandSlam_idx, ]</span>
-<span id="cb114-6"><a href="#cb114-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb114-7"><a href="#cb114-7" aria-hidden="true" tabindex="-1"></a>train_numeric <span class="ot">&lt;-</span> GrandSlam_train <span class="sc">%&gt;%</span></span>
-<span id="cb114-8"><a href="#cb114-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select_if</span>(is.numeric)</span>
-<span id="cb114-9"><a href="#cb114-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb114-10"><a href="#cb114-10" aria-hidden="true" tabindex="-1"></a>test_numeric <span class="ot">&lt;-</span> GrandSlam_test <span class="sc">%&gt;%</span></span>
-<span id="cb114-11"><a href="#cb114-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select_if</span>(is.numeric)</span>
-<span id="cb114-12"><a href="#cb114-12" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb114-13"><a href="#cb114-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb114-14"><a href="#cb114-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Standardize the training predictors</span></span>
-<span id="cb114-15"><a href="#cb114-15" aria-hidden="true" tabindex="-1"></a>train_mean <span class="ot">&lt;-</span> <span class="fu">apply</span>(train_numeric, <span class="dv">2</span>, mean)</span>
-<span id="cb114-16"><a href="#cb114-16" aria-hidden="true" tabindex="-1"></a>train_sd <span class="ot">&lt;-</span> <span class="fu">apply</span>(train_numeric, <span class="dv">2</span>, sd)</span>
-<span id="cb114-17"><a href="#cb114-17" aria-hidden="true" tabindex="-1"></a>train_numeric_standardized <span class="ot">&lt;-</span> <span class="fu">scale</span>(train_numeric, <span class="at">center =</span> train_mean, <span class="at">scale =</span> train_sd)</span>
-<span id="cb114-18"><a href="#cb114-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb114-19"><a href="#cb114-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Standardize the test predictors using training mean and sd</span></span>
-<span id="cb114-20"><a href="#cb114-20" aria-hidden="true" tabindex="-1"></a>test_numeric_standardized <span class="ot">&lt;-</span> <span class="fu">scale</span>(test_numeric, <span class="at">center =</span> train_mean, <span class="at">scale =</span> train_sd)</span>
-<span id="cb114-21"><a href="#cb114-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb114-22"><a href="#cb114-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine standardized predictors with the response variable</span></span>
-<span id="cb114-23"><a href="#cb114-23" aria-hidden="true" tabindex="-1"></a>GrandSlam_trn_std <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(train_numeric_standardized)</span>
-<span id="cb114-24"><a href="#cb114-24" aria-hidden="true" tabindex="-1"></a>GrandSlam_tst_std <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(test_numeric_standardized)</span>
-<span id="cb114-25"><a href="#cb114-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb114-26"><a href="#cb114-26" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(GrandSlam_trn_std)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb114"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb114-1"><a href="#cb114-1" aria-hidden="true" tabindex="-1"></a><span class="fu">shapiro.test</span>(GrandSlam_Reg_final<span class="sc">$</span>TPW)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Shapiro-Wilk normality test
+
+data:  GrandSlam_Reg_final$TPW
+W = 0.99203, p-value = 2.948e-05</code></pre>
+</div>
+<details class="code-fold">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb116"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb116-1"><a href="#cb116-1" aria-hidden="true" tabindex="-1"></a><span class="co">#creating test training data by considcering distribution of Result</span></span>
+<span id="cb116-2"><a href="#cb116-2" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">25</span>)</span>
+<span id="cb116-3"><a href="#cb116-3" aria-hidden="true" tabindex="-1"></a>GrandSlam_idx <span class="ot">=</span> <span class="fu">createDataPartition</span>(GrandSlam_Reg_final<span class="sc">$</span>TPW, <span class="at">p =</span> <span class="fl">0.8</span>, <span class="at">list =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb116-4"><a href="#cb116-4" aria-hidden="true" tabindex="-1"></a>GrandSlam_train <span class="ot">=</span> GrandSlam_Reg_final[GrandSlam_idx, ]</span>
+<span id="cb116-5"><a href="#cb116-5" aria-hidden="true" tabindex="-1"></a>GrandSlam_test <span class="ot">=</span> GrandSlam_Reg_final[<span class="sc">-</span>GrandSlam_idx, ]</span>
+<span id="cb116-6"><a href="#cb116-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb116-7"><a href="#cb116-7" aria-hidden="true" tabindex="-1"></a>train_numeric <span class="ot">&lt;-</span> GrandSlam_train <span class="sc">%&gt;%</span></span>
+<span id="cb116-8"><a href="#cb116-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select_if</span>(is.numeric)</span>
+<span id="cb116-9"><a href="#cb116-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb116-10"><a href="#cb116-10" aria-hidden="true" tabindex="-1"></a>test_numeric <span class="ot">&lt;-</span> GrandSlam_test <span class="sc">%&gt;%</span></span>
+<span id="cb116-11"><a href="#cb116-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select_if</span>(is.numeric)</span>
+<span id="cb116-12"><a href="#cb116-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb116-13"><a href="#cb116-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb116-14"><a href="#cb116-14" aria-hidden="true" tabindex="-1"></a><span class="co"># Standardize the training predictors</span></span>
+<span id="cb116-15"><a href="#cb116-15" aria-hidden="true" tabindex="-1"></a>train_mean <span class="ot">&lt;-</span> <span class="fu">apply</span>(train_numeric, <span class="dv">2</span>, mean)</span>
+<span id="cb116-16"><a href="#cb116-16" aria-hidden="true" tabindex="-1"></a>train_sd <span class="ot">&lt;-</span> <span class="fu">apply</span>(train_numeric, <span class="dv">2</span>, sd)</span>
+<span id="cb116-17"><a href="#cb116-17" aria-hidden="true" tabindex="-1"></a>train_numeric_standardized <span class="ot">&lt;-</span> <span class="fu">scale</span>(train_numeric, <span class="at">center =</span> train_mean, <span class="at">scale =</span> train_sd)</span>
+<span id="cb116-18"><a href="#cb116-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb116-19"><a href="#cb116-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Standardize the test predictors using training mean and sd</span></span>
+<span id="cb116-20"><a href="#cb116-20" aria-hidden="true" tabindex="-1"></a>test_numeric_standardized <span class="ot">&lt;-</span> <span class="fu">scale</span>(test_numeric, <span class="at">center =</span> train_mean, <span class="at">scale =</span> train_sd)</span>
+<span id="cb116-21"><a href="#cb116-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb116-22"><a href="#cb116-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine standardized predictors with the response variable</span></span>
+<span id="cb116-23"><a href="#cb116-23" aria-hidden="true" tabindex="-1"></a>GrandSlam_trn_std <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(train_numeric_standardized)</span>
+<span id="cb116-24"><a href="#cb116-24" aria-hidden="true" tabindex="-1"></a>GrandSlam_tst_std <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(test_numeric_standardized)</span>
+<span id="cb116-25"><a href="#cb116-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb116-26"><a href="#cb116-26" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(GrandSlam_trn_std)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>      FSP                FSW               SSW                 ACE         
@@ -4943,10 +4954,10 @@ W = 0.98635, p-value = 4.395e-08</code></pre>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb116"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb116-1"><a href="#cb116-1" aria-hidden="true" tabindex="-1"></a>correlation_matrix <span class="ot">&lt;-</span> <span class="fu">cor</span>(GrandSlam_trn_std,<span class="at">use =</span> <span class="st">"complete.obs"</span>)</span>
-<span id="cb116-2"><a href="#cb116-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb116-3"><a href="#cb116-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Print correlation matrix</span></span>
-<span id="cb116-4"><a href="#cb116-4" aria-hidden="true" tabindex="-1"></a><span class="fu">corrplot</span>(correlation_matrix, <span class="at">method =</span> <span class="st">"color"</span>, <span class="at">type =</span> <span class="st">"upper"</span>, <span class="at">tl.col =</span> <span class="st">"black"</span>, <span class="at">tl.srt =</span> <span class="dv">45</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb118"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb118-1"><a href="#cb118-1" aria-hidden="true" tabindex="-1"></a>correlation_matrix <span class="ot">&lt;-</span> <span class="fu">cor</span>(GrandSlam_trn_std,<span class="at">use =</span> <span class="st">"complete.obs"</span>)</span>
+<span id="cb118-2"><a href="#cb118-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb118-3"><a href="#cb118-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Print correlation matrix</span></span>
+<span id="cb118-4"><a href="#cb118-4" aria-hidden="true" tabindex="-1"></a><span class="fu">corrplot</span>(correlation_matrix, <span class="at">method =</span> <span class="st">"color"</span>, <span class="at">type =</span> <span class="st">"upper"</span>, <span class="at">tl.col =</span> <span class="st">"black"</span>, <span class="at">tl.srt =</span> <span class="dv">45</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -4957,22 +4968,22 @@ W = 0.98635, p-value = 4.395e-08</code></pre>
 </div>
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb117"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb117-1"><a href="#cb117-1" aria-hidden="true" tabindex="-1"></a>GrandSlam_trn_std <span class="ot">&lt;-</span> GrandSlam_trn_std <span class="sc">%&gt;%</span></span>
-<span id="cb117-2"><a href="#cb117-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>FSP)</span>
-<span id="cb117-3"><a href="#cb117-3" aria-hidden="true" tabindex="-1"></a>GrandSlam_tst_std <span class="ot">&lt;-</span> GrandSlam_tst_std <span class="sc">%&gt;%</span></span>
-<span id="cb117-4"><a href="#cb117-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>FSP)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb119"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb119-1"><a href="#cb119-1" aria-hidden="true" tabindex="-1"></a>GrandSlam_trn_std <span class="ot">&lt;-</span> GrandSlam_trn_std <span class="sc">%&gt;%</span></span>
+<span id="cb119-2"><a href="#cb119-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>FSP)</span>
+<span id="cb119-3"><a href="#cb119-3" aria-hidden="true" tabindex="-1"></a>GrandSlam_tst_std <span class="ot">&lt;-</span> GrandSlam_tst_std <span class="sc">%&gt;%</span></span>
+<span id="cb119-4"><a href="#cb119-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>FSP)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb118"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb118-1"><a href="#cb118-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">25</span>)</span>
-<span id="cb118-2"><a href="#cb118-2" aria-hidden="true" tabindex="-1"></a>train_control <span class="ot">&lt;-</span> <span class="fu">trainControl</span>(<span class="at">method =</span> <span class="st">"cv"</span>, <span class="at">number =</span> <span class="dv">10</span>)</span>
-<span id="cb118-3"><a href="#cb118-3" aria-hidden="true" tabindex="-1"></a>linear_model <span class="ot">&lt;-</span> <span class="fu">train</span>(TPW<span class="sc">~</span>., <span class="at">data =</span> GrandSlam_trn_std, </span>
-<span id="cb118-4"><a href="#cb118-4" aria-hidden="true" tabindex="-1"></a>                      <span class="at">method =</span> <span class="st">"lm"</span>, </span>
-<span id="cb118-5"><a href="#cb118-5" aria-hidden="true" tabindex="-1"></a>                      <span class="at">trControl =</span> train_control)</span>
-<span id="cb118-6"><a href="#cb118-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb118-7"><a href="#cb118-7" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(linear_model<span class="sc">$</span>finalModel)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb120"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb120-1"><a href="#cb120-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">25</span>)</span>
+<span id="cb120-2"><a href="#cb120-2" aria-hidden="true" tabindex="-1"></a>train_control <span class="ot">&lt;-</span> <span class="fu">trainControl</span>(<span class="at">method =</span> <span class="st">"cv"</span>, <span class="at">number =</span> <span class="dv">10</span>)</span>
+<span id="cb120-3"><a href="#cb120-3" aria-hidden="true" tabindex="-1"></a>linear_model <span class="ot">&lt;-</span> <span class="fu">train</span>(TPW<span class="sc">~</span>., <span class="at">data =</span> GrandSlam_trn_std, </span>
+<span id="cb120-4"><a href="#cb120-4" aria-hidden="true" tabindex="-1"></a>                      <span class="at">method =</span> <span class="st">"lm"</span>, </span>
+<span id="cb120-5"><a href="#cb120-5" aria-hidden="true" tabindex="-1"></a>                      <span class="at">trControl =</span> train_control)</span>
+<span id="cb120-6"><a href="#cb120-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb120-7"><a href="#cb120-7" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(linear_model<span class="sc">$</span>finalModel)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
@@ -5006,9 +5017,9 @@ F-statistic: 687.1 on 8 and 800 DF,  p-value: &lt; 2.2e-16</code></pre>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb120"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb120-1"><a href="#cb120-1" aria-hidden="true" tabindex="-1"></a>test_pred <span class="ot">&lt;-</span> <span class="fu">predict</span>(linear_model<span class="sc">$</span>finalModel, GrandSlam_tst_std, <span class="at">type =</span> <span class="st">"response"</span>)</span>
-<span id="cb120-2"><a href="#cb120-2" aria-hidden="true" tabindex="-1"></a>rmse_lm <span class="ot">&lt;-</span> <span class="fu">RMSE</span>(test_pred, GrandSlam_tst_std<span class="sc">$</span>TPW)</span>
-<span id="cb120-3"><a href="#cb120-3" aria-hidden="true" tabindex="-1"></a>perf_lm <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="st">"Metric"</span><span class="ot">&lt;-</span> <span class="st">"RMSE"</span>,<span class="st">"Value"</span> <span class="ot">&lt;-</span> rmse_lm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb122"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb122-1"><a href="#cb122-1" aria-hidden="true" tabindex="-1"></a>test_pred <span class="ot">&lt;-</span> <span class="fu">predict</span>(linear_model<span class="sc">$</span>finalModel, GrandSlam_tst_std, <span class="at">type =</span> <span class="st">"response"</span>)</span>
+<span id="cb122-2"><a href="#cb122-2" aria-hidden="true" tabindex="-1"></a>rmse_lm <span class="ot">&lt;-</span> <span class="fu">RMSE</span>(test_pred, GrandSlam_tst_std<span class="sc">$</span>TPW)</span>
+<span id="cb122-3"><a href="#cb122-3" aria-hidden="true" tabindex="-1"></a>perf_lm <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="st">"Metric"</span><span class="ot">&lt;-</span> <span class="st">"RMSE"</span>,<span class="st">"Value"</span> <span class="ot">&lt;-</span> rmse_lm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 </section>
@@ -5018,15 +5029,15 @@ F-statistic: 687.1 on 8 and 800 DF,  p-value: &lt; 2.2e-16</code></pre>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb121"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb121-1"><a href="#cb121-1" aria-hidden="true" tabindex="-1"></a>x<span class="ot">=</span><span class="fu">model.matrix</span>(TPW<span class="sc">~</span>.,GrandSlam_trn_std)[,<span class="sc">-</span><span class="dv">1</span>]</span>
-<span id="cb121-2"><a href="#cb121-2" aria-hidden="true" tabindex="-1"></a>y<span class="ot">=</span> GrandSlam_trn_std<span class="sc">$</span>TPW</span>
-<span id="cb121-3"><a href="#cb121-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb121-4"><a href="#cb121-4" aria-hidden="true" tabindex="-1"></a>x_test<span class="ot">=</span><span class="fu">model.matrix</span>(TPW<span class="sc">~</span>.,GrandSlam_tst_std)[,<span class="sc">-</span><span class="dv">1</span>]</span>
-<span id="cb121-5"><a href="#cb121-5" aria-hidden="true" tabindex="-1"></a>y_test<span class="ot">=</span> GrandSlam_tst_std<span class="sc">$</span>TPW</span>
-<span id="cb121-6"><a href="#cb121-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb121-7"><a href="#cb121-7" aria-hidden="true" tabindex="-1"></a>grid <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fl">0.005</span>,<span class="dv">1</span>,<span class="at">length=</span><span class="dv">100</span>)</span>
-<span id="cb121-8"><a href="#cb121-8" aria-hidden="true" tabindex="-1"></a>lasso.mod<span class="ot">=</span><span class="fu">glmnet</span>(x,y,<span class="at">alpha=</span><span class="dv">1</span>,<span class="at">lambda=</span>grid)</span>
-<span id="cb121-9"><a href="#cb121-9" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lasso.mod,<span class="at">main=</span><span class="st">"L1 norm vs Coefficients"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb123"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb123-1"><a href="#cb123-1" aria-hidden="true" tabindex="-1"></a>x<span class="ot">=</span><span class="fu">model.matrix</span>(TPW<span class="sc">~</span>.,GrandSlam_trn_std)[,<span class="sc">-</span><span class="dv">1</span>]</span>
+<span id="cb123-2"><a href="#cb123-2" aria-hidden="true" tabindex="-1"></a>y<span class="ot">=</span> GrandSlam_trn_std<span class="sc">$</span>TPW</span>
+<span id="cb123-3"><a href="#cb123-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb123-4"><a href="#cb123-4" aria-hidden="true" tabindex="-1"></a>x_test<span class="ot">=</span><span class="fu">model.matrix</span>(TPW<span class="sc">~</span>.,GrandSlam_tst_std)[,<span class="sc">-</span><span class="dv">1</span>]</span>
+<span id="cb123-5"><a href="#cb123-5" aria-hidden="true" tabindex="-1"></a>y_test<span class="ot">=</span> GrandSlam_tst_std<span class="sc">$</span>TPW</span>
+<span id="cb123-6"><a href="#cb123-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb123-7"><a href="#cb123-7" aria-hidden="true" tabindex="-1"></a>grid <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fl">0.005</span>,<span class="dv">1</span>,<span class="at">length=</span><span class="dv">100</span>)</span>
+<span id="cb123-8"><a href="#cb123-8" aria-hidden="true" tabindex="-1"></a>lasso.mod<span class="ot">=</span><span class="fu">glmnet</span>(x,y,<span class="at">alpha=</span><span class="dv">1</span>,<span class="at">lambda=</span>grid)</span>
+<span id="cb123-9"><a href="#cb123-9" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(lasso.mod,<span class="at">main=</span><span class="st">"L1 norm vs Coefficients"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning in regularize.values(x, y, ties, missing(ties), na.rm = na.rm):
@@ -5041,8 +5052,8 @@ collapsing to unique 'x' values</code></pre>
 </div>
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb123"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb123-1"><a href="#cb123-1" aria-hidden="true" tabindex="-1"></a>cv.out<span class="ot">=</span><span class="fu">cv.glmnet</span>(x,y,<span class="at">alpha=</span><span class="dv">1</span>)</span>
-<span id="cb123-2"><a href="#cb123-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(cv.out)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb125"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb125-1"><a href="#cb125-1" aria-hidden="true" tabindex="-1"></a>cv.out<span class="ot">=</span><span class="fu">cv.glmnet</span>(x,y,<span class="at">alpha=</span><span class="dv">1</span>)</span>
+<span id="cb125-2"><a href="#cb125-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(cv.out)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -5053,19 +5064,19 @@ collapsing to unique 'x' values</code></pre>
 </div>
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb124"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb124-1"><a href="#cb124-1" aria-hidden="true" tabindex="-1"></a>low_predictor_lam<span class="ot">=</span>cv.out<span class="sc">$</span>lambda<span class="fl">.1</span>se</span>
-<span id="cb124-2"><a href="#cb124-2" aria-hidden="true" tabindex="-1"></a>bestlam<span class="ot">=</span>cv.out<span class="sc">$</span>lambda.min</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb126"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb126-1"><a href="#cb126-1" aria-hidden="true" tabindex="-1"></a>low_predictor_lam<span class="ot">=</span>cv.out<span class="sc">$</span>lambda<span class="fl">.1</span>se</span>
+<span id="cb126-2"><a href="#cb126-2" aria-hidden="true" tabindex="-1"></a>bestlam<span class="ot">=</span>cv.out<span class="sc">$</span>lambda.min</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<p>Grid search for lambda shows that FSW, WNR and BPC are. the most effective parameters to win more points. Also, 10 fold cross validation applied to find best lambda value by considering RMSE, best lambda for lasso is 0.0018243. For best lambda value, lasso regression use all of the variable. Coefficients of lasso regression are like below.</p>
+<p>Grid search for lambda shows that FSW, WNR and BPC are the most effective parameters to win more points. Also, 10 fold cross validation applied to find best lambda value by considering RMSE, best lambda for lasso is 0.0018243. For best lambda value, lasso regression use all of the variable. Coefficients of lasso regression are like below.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb125"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb125-1"><a href="#cb125-1" aria-hidden="true" tabindex="-1"></a>lasso.pred<span class="ot">=</span><span class="fu">predict</span>(lasso.mod,<span class="at">s=</span>bestlam ,<span class="at">newx=</span>x_test)</span>
-<span id="cb125-2"><a href="#cb125-2" aria-hidden="true" tabindex="-1"></a>RMSE_lasso <span class="ot">&lt;-</span> <span class="fu">mean</span>((lasso.pred<span class="sc">-</span>y_test)<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb125-3"><a href="#cb125-3" aria-hidden="true" tabindex="-1"></a>out<span class="ot">=</span><span class="fu">glmnet</span>(x,y,<span class="at">alpha=</span><span class="dv">1</span>,<span class="at">lambda=</span>grid)</span>
-<span id="cb125-4"><a href="#cb125-4" aria-hidden="true" tabindex="-1"></a>lasso.coef<span class="ot">=</span><span class="fu">predict</span>(out,<span class="at">type=</span><span class="st">"coefficients"</span>,<span class="at">s=</span>bestlam)[<span class="dv">1</span><span class="sc">:</span><span class="dv">8</span>,]</span>
-<span id="cb125-5"><a href="#cb125-5" aria-hidden="true" tabindex="-1"></a>lasso.coef</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb127"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb127-1"><a href="#cb127-1" aria-hidden="true" tabindex="-1"></a>lasso.pred<span class="ot">=</span><span class="fu">predict</span>(lasso.mod,<span class="at">s=</span>bestlam ,<span class="at">newx=</span>x_test)</span>
+<span id="cb127-2"><a href="#cb127-2" aria-hidden="true" tabindex="-1"></a>RMSE_lasso <span class="ot">&lt;-</span> <span class="fu">mean</span>((lasso.pred<span class="sc">-</span>y_test)<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb127-3"><a href="#cb127-3" aria-hidden="true" tabindex="-1"></a>out<span class="ot">=</span><span class="fu">glmnet</span>(x,y,<span class="at">alpha=</span><span class="dv">1</span>,<span class="at">lambda=</span>grid)</span>
+<span id="cb127-4"><a href="#cb127-4" aria-hidden="true" tabindex="-1"></a>lasso.coef<span class="ot">=</span><span class="fu">predict</span>(out,<span class="at">type=</span><span class="st">"coefficients"</span>,<span class="at">s=</span>bestlam)[<span class="dv">1</span><span class="sc">:</span><span class="dv">8</span>,]</span>
+<span id="cb127-5"><a href="#cb127-5" aria-hidden="true" tabindex="-1"></a>lasso.coef</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>  (Intercept)           FSW           SSW           ACE           DBF 
@@ -5075,22 +5086,22 @@ collapsing to unique 'x' values</code></pre>
 </div>
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb127"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb127-1"><a href="#cb127-1" aria-hidden="true" tabindex="-1"></a>perf_lasso <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="st">"Metric"</span><span class="ot">&lt;-</span> <span class="st">"RMSE"</span>,<span class="st">"Value"</span> <span class="ot">&lt;-</span> RMSE_lasso)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb129"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb129-1"><a href="#cb129-1" aria-hidden="true" tabindex="-1"></a>perf_lasso <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="st">"Metric"</span><span class="ot">&lt;-</span> <span class="st">"RMSE"</span>,<span class="st">"Value"</span> <span class="ot">&lt;-</span> RMSE_lasso)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
-<p>Ridge regression can be used to find effective parameters and predict TPW for players.</p>
+<p>Ridge regression can be used to find effective parameters and predict TPW for players. Grid search for lambda shows that FSW, WNR and BPC are the most effective parameters to win more points like in Lasso.</p>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb128"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb128-1"><a href="#cb128-1" aria-hidden="true" tabindex="-1"></a>x<span class="ot">=</span><span class="fu">model.matrix</span>(TPW<span class="sc">~</span>.,GrandSlam_trn_std)[,<span class="sc">-</span><span class="dv">1</span>]</span>
-<span id="cb128-2"><a href="#cb128-2" aria-hidden="true" tabindex="-1"></a>y<span class="ot">=</span> GrandSlam_trn_std<span class="sc">$</span>TPW</span>
-<span id="cb128-3"><a href="#cb128-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb128-4"><a href="#cb128-4" aria-hidden="true" tabindex="-1"></a>x_test<span class="ot">=</span><span class="fu">model.matrix</span>(TPW<span class="sc">~</span>.,GrandSlam_tst_std)[,<span class="sc">-</span><span class="dv">1</span>]</span>
-<span id="cb128-5"><a href="#cb128-5" aria-hidden="true" tabindex="-1"></a>y_test<span class="ot">=</span> GrandSlam_tst_std<span class="sc">$</span>TPW</span>
-<span id="cb128-6"><a href="#cb128-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb128-7"><a href="#cb128-7" aria-hidden="true" tabindex="-1"></a>grid <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fl">0.005</span>,<span class="dv">1</span>,<span class="at">length=</span><span class="dv">100</span>)</span>
-<span id="cb128-8"><a href="#cb128-8" aria-hidden="true" tabindex="-1"></a>ridge.mod<span class="ot">=</span><span class="fu">glmnet</span>(x,y,<span class="at">alpha=</span><span class="dv">0</span>,<span class="at">lambda=</span>grid)</span>
-<span id="cb128-9"><a href="#cb128-9" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ridge.mod,<span class="at">main=</span><span class="st">"L2 norm vs Coefficients"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb130"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb130-1"><a href="#cb130-1" aria-hidden="true" tabindex="-1"></a>x<span class="ot">=</span><span class="fu">model.matrix</span>(TPW<span class="sc">~</span>.,GrandSlam_trn_std)[,<span class="sc">-</span><span class="dv">1</span>]</span>
+<span id="cb130-2"><a href="#cb130-2" aria-hidden="true" tabindex="-1"></a>y<span class="ot">=</span> GrandSlam_trn_std<span class="sc">$</span>TPW</span>
+<span id="cb130-3"><a href="#cb130-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb130-4"><a href="#cb130-4" aria-hidden="true" tabindex="-1"></a>x_test<span class="ot">=</span><span class="fu">model.matrix</span>(TPW<span class="sc">~</span>.,GrandSlam_tst_std)[,<span class="sc">-</span><span class="dv">1</span>]</span>
+<span id="cb130-5"><a href="#cb130-5" aria-hidden="true" tabindex="-1"></a>y_test<span class="ot">=</span> GrandSlam_tst_std<span class="sc">$</span>TPW</span>
+<span id="cb130-6"><a href="#cb130-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb130-7"><a href="#cb130-7" aria-hidden="true" tabindex="-1"></a>grid <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="fl">0.005</span>,<span class="dv">1</span>,<span class="at">length=</span><span class="dv">100</span>)</span>
+<span id="cb130-8"><a href="#cb130-8" aria-hidden="true" tabindex="-1"></a>ridge.mod<span class="ot">=</span><span class="fu">glmnet</span>(x,y,<span class="at">alpha=</span><span class="dv">0</span>,<span class="at">lambda=</span>grid)</span>
+<span id="cb130-9"><a href="#cb130-9" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(ridge.mod,<span class="at">main=</span><span class="st">"L2 norm vs Coefficients"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -5101,8 +5112,8 @@ collapsing to unique 'x' values</code></pre>
 </div>
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb129"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb129-1"><a href="#cb129-1" aria-hidden="true" tabindex="-1"></a>cv.out<span class="ot">=</span><span class="fu">cv.glmnet</span>(x,y,<span class="at">alpha=</span><span class="dv">0</span>)</span>
-<span id="cb129-2"><a href="#cb129-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(cv.out)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb131"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb131-1"><a href="#cb131-1" aria-hidden="true" tabindex="-1"></a>cv.out<span class="ot">=</span><span class="fu">cv.glmnet</span>(x,y,<span class="at">alpha=</span><span class="dv">0</span>)</span>
+<span id="cb131-2"><a href="#cb131-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(cv.out)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <div>
@@ -5113,7 +5124,7 @@ collapsing to unique 'x' values</code></pre>
 </div>
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb130"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb130-1"><a href="#cb130-1" aria-hidden="true" tabindex="-1"></a>bestlam<span class="ot">=</span>cv.out<span class="sc">$</span>lambda.min</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb132"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb132-1"><a href="#cb132-1" aria-hidden="true" tabindex="-1"></a>bestlam<span class="ot">=</span>cv.out<span class="sc">$</span>lambda.min</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
 <p>Lambda tuned as 0.0703011.</p>
@@ -5121,11 +5132,11 @@ collapsing to unique 'x' values</code></pre>
 <div class="cell">
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb131"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb131-1"><a href="#cb131-1" aria-hidden="true" tabindex="-1"></a>ridge.pred<span class="ot">=</span><span class="fu">predict</span>(ridge.mod,<span class="at">s=</span>bestlam ,<span class="at">newx=</span>x_test)</span>
-<span id="cb131-2"><a href="#cb131-2" aria-hidden="true" tabindex="-1"></a>RMSE_ridge <span class="ot">&lt;-</span> <span class="fu">mean</span>((ridge.pred<span class="sc">-</span>y_test)<span class="sc">^</span><span class="dv">2</span>)</span>
-<span id="cb131-3"><a href="#cb131-3" aria-hidden="true" tabindex="-1"></a>out<span class="ot">=</span><span class="fu">glmnet</span>(x,y,<span class="at">alpha=</span><span class="dv">0</span>,<span class="at">lambda=</span>grid)</span>
-<span id="cb131-4"><a href="#cb131-4" aria-hidden="true" tabindex="-1"></a>ridge.coef<span class="ot">=</span><span class="fu">predict</span>(out,<span class="at">type=</span><span class="st">"coefficients"</span>,<span class="at">s=</span>bestlam)[<span class="dv">1</span><span class="sc">:</span><span class="dv">8</span>,]</span>
-<span id="cb131-5"><a href="#cb131-5" aria-hidden="true" tabindex="-1"></a>ridge.coef</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb133"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb133-1"><a href="#cb133-1" aria-hidden="true" tabindex="-1"></a>ridge.pred<span class="ot">=</span><span class="fu">predict</span>(ridge.mod,<span class="at">s=</span>bestlam ,<span class="at">newx=</span>x_test)</span>
+<span id="cb133-2"><a href="#cb133-2" aria-hidden="true" tabindex="-1"></a>RMSE_ridge <span class="ot">&lt;-</span> <span class="fu">mean</span>((ridge.pred<span class="sc">-</span>y_test)<span class="sc">^</span><span class="dv">2</span>)</span>
+<span id="cb133-3"><a href="#cb133-3" aria-hidden="true" tabindex="-1"></a>out<span class="ot">=</span><span class="fu">glmnet</span>(x,y,<span class="at">alpha=</span><span class="dv">0</span>,<span class="at">lambda=</span>grid)</span>
+<span id="cb133-4"><a href="#cb133-4" aria-hidden="true" tabindex="-1"></a>ridge.coef<span class="ot">=</span><span class="fu">predict</span>(out,<span class="at">type=</span><span class="st">"coefficients"</span>,<span class="at">s=</span>bestlam)[<span class="dv">1</span><span class="sc">:</span><span class="dv">8</span>,]</span>
+<span id="cb133-5"><a href="#cb133-5" aria-hidden="true" tabindex="-1"></a>ridge.coef</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>  (Intercept)           FSW           SSW           ACE           DBF 
@@ -5135,10 +5146,10 @@ collapsing to unique 'x' values</code></pre>
 </div>
 <details class="code-fold">
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb133"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb133-1"><a href="#cb133-1" aria-hidden="true" tabindex="-1"></a>perf_ridge <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="st">"Metric"</span><span class="ot">&lt;-</span> <span class="st">"RMSE"</span>,<span class="st">"Value"</span> <span class="ot">&lt;-</span> RMSE_ridge)</span>
-<span id="cb133-2"><a href="#cb133-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb133-3"><a href="#cb133-3" aria-hidden="true" tabindex="-1"></a>perf_lm_lasso_ridge <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="st">"Metric"</span><span class="ot">=</span> <span class="st">"RMSE"</span>,<span class="st">"Linear Model"</span><span class="ot">=</span>perf_lm<span class="sc">$</span>X.Value.....rmse_lm,<span class="st">"LASSO"</span><span class="ot">=</span>perf_lasso<span class="sc">$</span>X.Value.....RMSE_lasso,<span class="st">"RIDGE"</span><span class="ot">=</span>perf_ridge<span class="sc">$</span>X.Value.....RMSE_ridge)</span>
-<span id="cb133-4"><a href="#cb133-4" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(perf_lm_lasso_ridge,<span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"Metric"</span>, <span class="st">"Linear Model"</span>,<span class="st">"LASSO"</span>,<span class="st">"RIDGE"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb135"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb135-1"><a href="#cb135-1" aria-hidden="true" tabindex="-1"></a>perf_ridge <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="st">"Metric"</span><span class="ot">&lt;-</span> <span class="st">"RMSE"</span>,<span class="st">"Value"</span> <span class="ot">&lt;-</span> RMSE_ridge)</span>
+<span id="cb135-2"><a href="#cb135-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb135-3"><a href="#cb135-3" aria-hidden="true" tabindex="-1"></a>perf_lm_lasso_ridge <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="st">"Metric"</span><span class="ot">=</span> <span class="st">"RMSE"</span>,<span class="st">"Linear Model"</span><span class="ot">=</span>perf_lm<span class="sc">$</span>X.Value.....rmse_lm,<span class="st">"LASSO"</span><span class="ot">=</span>perf_lasso<span class="sc">$</span>X.Value.....RMSE_lasso,<span class="st">"RIDGE"</span><span class="ot">=</span>perf_ridge<span class="sc">$</span>X.Value.....RMSE_ridge)</span>
+<span id="cb135-4"><a href="#cb135-4" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(perf_lm_lasso_ridge,<span class="at">col.names =</span> <span class="fu">c</span>(<span class="st">"Metric"</span>, <span class="st">"Linear Model"</span>,<span class="st">"LASSO"</span>,<span class="st">"RIDGE"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
 <table class="table table-sm table-striped small">
@@ -5165,7 +5176,7 @@ collapsing to unique 'x' values</code></pre>
 </section>
 <section id="conclusion" class="level2">
 <h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
-<p>As a conclusion, Grand slams 2013 data set analyzed by considering Result and total points win. For predicting result, classification modeling applied as logistic regression, svm, random forest and ANN. Random forest show the best performance for predicting match result. Also, according to all classification model FSW and BPC are the most effective variables. Moreover, TPW regression made by classical linear model, lasso and ridge. All of the regression model show that again FSW and BPC are most important variables for TPW. Therefore, players should focus on serving and returning oppenent services to win the match and win more points.</p>
+<p>As a conclusion, Grand slams 2013 data set analyzed by considering Result and total points win. For predicting result, classification modeling applied as logistic regression, svm, random forest and ANN. Random forest show the best performance for predicting match result. Also, according to all classification model FSW and BPC are the most effective variables. Moreover, TPW regression made by classic linear regression, lasso and ridge. All of the regression model show that again FSW and BPC are most important variables for TPW. Therefore, players should focus on serving and returning opponent services to win the match and win more points.</p>
 </section>
 
 </main>

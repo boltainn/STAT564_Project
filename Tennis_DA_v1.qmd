@@ -655,7 +655,7 @@ variances_first <- variances_first %>%
 
 var_comp <- rbind(variances_first,variances_last)
 var_names <- colnames(var_comp)
-var_comp$group <- c("First", "Last")
+var_comp$group <- c("Before Imputation", "After Imputation")
 
 df_long <- var_comp %>%
   pivot_longer(cols =var_names , names_to = "variable", values_to = "value")
@@ -664,7 +664,7 @@ ggplot(df_long, aes(x = variable, y = value, fill = group)) +
   geom_bar(stat = "identity", position = position_dodge(width = 1)) +
   labs(title = "Comparison of Variables Across Multiple Variables",
        x = "Variable",
-       y = "Value",
+       y = "Variance",
        fill = "Group") +
   scale_y_log10()+
   theme_minimal()+
@@ -1022,7 +1022,7 @@ feature_importance <- data.frame(Feature = colnames(GrandSlam_trn_std)[-which(na
 kable(feature_importance[order(abs(feature_importance$Weights),decreasing = TRUE),],caption = "Feature Importance Table")
 ```
 
-### Model Comparison Table
+### Model Comparison
 
 Model comparison table show that Random Forest model has the best accuracy. Also when we consider importance of variable, all of the model indicate that FSW, BPC, SSW are the most effective statistics that effect the result. Therefore, players should practice serving better and returning serves from opponent in order to win the match.
 
@@ -1032,7 +1032,7 @@ comp_df <- data.frame("Metric"= performance_table_log$Metric,
                       "SVM"=performance_table_svm$Value,
                       "Random Forest"=performance_table_rf$Value,
                       "ANN" = performance_table_nn$Value) 
-kable(comp_df, caption = "Performance Comporison")
+kable(comp_df, caption = "Performance Comparison")
 
 ```
 
@@ -1106,7 +1106,7 @@ GrandSlam_Reg_final$TPW <- boxcox_transform(GrandSlam_Reg_final$TPW, lmbd)
 print("After Box Cox Transformation")
 ggplot(GrandSlam_Reg_final,aes(x=TPW))+
   geom_density()
-
+shapiro.test(GrandSlam_Reg_final$TPW)
 #creating test training data by considcering distribution of Result
 set.seed(25)
 GrandSlam_idx = createDataPartition(GrandSlam_Reg_final$TPW, p = 0.8, list = FALSE)
@@ -1191,7 +1191,7 @@ low_predictor_lam=cv.out$lambda.1se
 bestlam=cv.out$lambda.min
 ```
 
-Grid search for lambda shows that FSW, WNR and BPC are. the most effective parameters to win more points. Also, 10 fold cross validation applied to find best lambda value by considering RMSE, best lambda for lasso is `r bestlam`. For best lambda value, lasso regression use all of the variable. Coefficients of lasso regression are like below.
+Grid search for lambda shows that FSW, WNR and BPC are the most effective parameters to win more points. Also, 10 fold cross validation applied to find best lambda value by considering RMSE, best lambda for lasso is `r bestlam`. For best lambda value, lasso regression use all of the variable. Coefficients of lasso regression are like below.
 
 ```{r lasso}
 lasso.pred=predict(lasso.mod,s=bestlam ,newx=x_test)
@@ -1202,7 +1202,7 @@ lasso.coef
 perf_lasso <- data.frame("Metric"<- "RMSE","Value" <- RMSE_lasso)
 ```
 
-Ridge regression can be used to find effective parameters and predict TPW for players.
+Ridge regression can be used to find effective parameters and predict TPW for players. Grid search for lambda shows that FSW, WNR and BPC are the most effective parameters to win more points like in Lasso.
 
 ```{r ridge_reg}
 x=model.matrix(TPW~.,GrandSlam_trn_std)[,-1]
@@ -1238,4 +1238,4 @@ kable(perf_lm_lasso_ridge,col.names = c("Metric", "Linear Model","LASSO","RIDGE"
 
 ## Conclusion
 
-As a conclusion, Grand slams 2013 data set analyzed by considering Result and total points win. For predicting result, classification modeling applied as logistic regression, svm, random forest and ANN. Random forest show the best performance for predicting match result. Also, according to all classification model FSW and BPC are the most effective variables. Moreover, TPW regression made by classical linear model, lasso and ridge. All of the regression model show that again FSW and BPC are most important variables for TPW. Therefore, players should focus on serving and returning oppenent services to win the match and win more points.
+As a conclusion, Grand slams 2013 data set analyzed by considering Result and total points win. For predicting result, classification modeling applied as logistic regression, svm, random forest and ANN. Random forest show the best performance for predicting match result. Also, according to all classification model FSW and BPC are the most effective variables. Moreover, TPW regression made by classic linear regression, lasso and ridge. All of the regression model show that again FSW and BPC are most important variables for TPW. Therefore, players should focus on serving and returning opponent services to win the match and win more points.
