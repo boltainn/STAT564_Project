@@ -42,17 +42,17 @@ In this project, data is 4 different tennis singles 2013 grand slams match stati
 
 ```{r combine_DF}
 ## Getting data
-AusOpenMen <- read.csv("https://raw.githubusercontent.com/boltainn/Tennis_DA_project/main/AusOpen-men-2013.csv")
-AusOpenWoMen <- read.csv("https://raw.githubusercontent.com/boltainn/Tennis_DA_project/main/AusOpen-women-2013.csv")
+AusOpenMen <- read.csv("https://raw.githubusercontent.com/boltainn/STAT564_Project/main/AusOpen-men-2013.csv")
+AusOpenWoMen <- read.csv("https://raw.githubusercontent.com/boltainn/STAT564_Project/main/AusOpen-women-2013.csv")
 
-FrenchOpenMen <- read.csv("https://raw.githubusercontent.com/boltainn/Tennis_DA_project/main/FrenchOpen-men-2013.csv")
-FrenchOpenWoMen <- read.csv("https://raw.githubusercontent.com/boltainn/Tennis_DA_project/main/FrenchOpen-women-2013.csv")
+FrenchOpenMen <- read.csv("https://raw.githubusercontent.com/boltainn/STAT564_Project/main/FrenchOpen-men-2013.csv")
+FrenchOpenWoMen <- read.csv("https://raw.githubusercontent.com/boltainn/STAT564_Project/main/FrenchOpen-women-2013.csv")
 
-USOpenMen <- read.csv("https://raw.githubusercontent.com/boltainn/Tennis_DA_project/main/USOpen-men-2013.csv")
-USOpenWoMen <- read.csv("https://raw.githubusercontent.com/boltainn/Tennis_DA_project/main/USOpen-women-2013.csv")
+USOpenMen <- read.csv("https://raw.githubusercontent.com/boltainn/STAT564_Project/main/USOpen-men-2013.csv")
+USOpenWoMen <- read.csv("https://raw.githubusercontent.com/boltainn/STAT564_Project/main/USOpen-women-2013.csv")
 
-WimbledonMen <- read.csv("https://raw.githubusercontent.com/boltainn/Tennis_DA_project/main/Wimbledon-men-2013.csv")
-WimbledonWoMen <- read.csv("https://raw.githubusercontent.com/boltainn/Tennis_DA_project/main/Wimbledon-women-2013.csv")
+WimbledonMen <- read.csv("https://raw.githubusercontent.com/boltainn/STAT564_Project/main/Wimbledon-men-2013.csv")
+WimbledonWoMen <- read.csv("https://raw.githubusercontent.com/boltainn/STAT564_Project/main/Wimbledon-women-2013.csv")
 ##
 
 ##Combine all data and create new variables as "tournament" and "gender"
@@ -87,7 +87,7 @@ GrandSlam <- rbind(list_df[[1]],list_df[[2]],list_df[[3]],list_df[[4]],list_df[[
 Source of the data is [UC Irvine Machine Learning Repository](https://archive.ics.uci.edu/dataset/300/tennis+major+tournament+match+statistics). In the source of the data, there is 8 different csv file. Each one represent different tournament from 2013 (Aus Open-Men,AusOpen-Women, USOpen-men,...). Data has 4 different tournament group by gender, so we have 8 different csv file data. All of the 8 csv data has same 42 variables, so all of them are combined to 1 csv file and 2 variable added as tournament and gender. At the end, data has 44 variable. Dependent variable is 'Result'. Our data have `r dim(GrandSlam)[1]` match observations.
 
 | Name of Variable | Definition of Variable                                                                             |
-|------------------|----------------------------------------------------------------------------------------------------|
+|--------------------------|---------------------------------------------|
 | Player 1         | Name of Player 1 (Nominal)                                                                         |
 | Player 2         | Name of Player 2 (Nominal)                                                                         |
 | Round            | Round of the tourneament (Nominal Ordinal) (1: 1st elimination round, 7: Final of the tournament ) |
